@@ -18,10 +18,25 @@
             this.eventsMap = {};
         }
 
+        /**
+         *
+         * @param eventName
+         * @param handler
+         * @param context
+         * @returns {*}
+         */
         once(eventName, handler, context) {
             return this.on(...arguments, true);
         }
 
+        /**
+         *
+         * @param eventName
+         * @param handler
+         * @param context
+         * @param once
+         * @returns {EventDriver}
+         */
         on(eventName, handler, context, once) {
             const listeners = this.eventsMap[eventName],
                 isExistListener = !!listeners && listeners.find(listener => {
@@ -47,6 +62,13 @@
             return this;
         }
 
+        /**
+         *
+         * @param eventName
+         * @param handler
+         * @param context
+         * @returns {EventDriver}
+         */
         off(eventName, handler, context) {
             const listeners = this.eventsMap[eventName];
 
@@ -70,6 +92,13 @@
             return this;
         }
 
+        /**
+         *
+         * @param eventName
+         * @param data
+         * @param context
+         * @returns {EventDriver}
+         */
         trigger(eventName, data, context) {
             const listeners = this.eventsMap[eventName];
             if (!listeners || !listeners.length) {
@@ -90,12 +119,23 @@
             return this;
         }
 
+        /**
+         *
+         * @param listener
+         * @param data
+         * @private
+         */
         _dispatch(listener, data){
             listener.handler.call(listener.caller, listener, data);
         }
 
+        /**
+         *
+         * @returns {String}
+         * @private
+         */
         _toString() {
-            return [['EventDriver']]
+            return this.constructor.name;
         }
 
     }
