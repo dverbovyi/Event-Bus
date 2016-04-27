@@ -13,7 +13,6 @@
         root.EventDriver = factory();
     }
 })(window, () =>{
-    
     class EventDriver {
         constructor() {
             this.eventsMap = {};

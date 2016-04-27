@@ -3,17 +3,31 @@
  */
 module.exports = function (config) {
     config.set({
-        frameworks: ['jasmine'],
+        frameworks: ['browserify', 'jasmine'],
 
         files: [
-            './dist/**/*.js'
+            './dist/eventDriver.js',
+            './tests/**/*.js'
         ],
+
+        preprocessors: {
+            './tests/**/*.js': ['browserify']
+        },
+
+        browserify: {
+            debug: true,
+            transform: [ ['babelify', {"presets": ["es2015"]}] ]
+        },
+
+        // port: 9876,
+        colors: true,
+        logLevel: config.LOG_INFO,
 
         reporters: ['mocha'],
 
         browsers: ['PhantomJS'],
         // browsers: ['Chrome']
-        
+
         autoWatch: false,
         singleRun: true
     });

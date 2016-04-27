@@ -5,11 +5,12 @@ import EventDriver from '../src/eventDriver';
 
 describe('Event-Driver', () => {
     let eventDriver = null;
+
     beforeEach(() => {
         eventDriver = new EventDriver();
     });
 
-    describe('One', function() {
+    describe('#once', function() {
         beforeEach(() => {
             eventDriver = new EventDriver();
         });
@@ -24,7 +25,7 @@ describe('Event-Driver', () => {
         });
     });
 
-    describe('Trigger', function() {
+    describe('#trigger', function() {
         beforeEach(() => {
             eventDriver = new EventDriver();
         });
