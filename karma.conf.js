@@ -6,12 +6,13 @@ module.exports = function (config) {
         frameworks: ['browserify', 'jasmine'],
 
         files: [
-            './dist/eventDriver.js',
-            './tests/**/*.js'
+            './dist/*.js',
+            './tests/*.js'
         ],
 
         preprocessors: {
-            './tests/**/*.js': ['browserify']
+            './tests/*.js': ['browserify'],
+            './dist/*.js': ['coverage']
         },
 
         browserify: {
@@ -19,14 +20,18 @@ module.exports = function (config) {
             transform: [ ['babelify', {"presets": ["es2015"]}] ]
         },
 
-        // port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
 
-        reporters: ['mocha'],
+        reporters: ['mocha', 'progress', 'coverage'],
+
+        coverageReporter: {
+          type : 'text-summary',
+          dir : 'coverage/'
+        },
 
         browsers: ['PhantomJS'],
-        // browsers: ['Chrome']
+        // browsers: ['Chrome'],
 
         autoWatch: false,
         singleRun: true
