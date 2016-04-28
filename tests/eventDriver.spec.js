@@ -10,14 +10,22 @@ describe('Event-Driver', () => {
         eventDriver = new EventDriver();
     });
 
-    it('Should be possible to add event which fires only once',() =>{
+    it('#once: Should be possible to add event which fires only once',() =>{
         const callback = function() { return true };
 
-        spyOn(eventDriver, 'on').and.callThrough();
+        const onSpy = spyOn(eventDriver, 'on').and.callThrough();
 
         eventDriver.once('click', callback);
 
-        expect(eventDriver.on).toHaveBeenCalledWith('click', callback, true);
+        expect(onSpy).toHaveBeenCalledWith('click', callback, true);
+
+        const listener = eventDriver.eventsMap['click'][0];
+
+        const handlerSpy = spyOn(listener, 'handler');
+
+        eventDriver.trigger('click');
+
+        expect(listener.handler.calls.count()).toEqual(1);
     });
 
     xdescribe('#once', function() {
