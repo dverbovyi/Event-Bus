@@ -1,23 +1,30 @@
 /**
  * Created by Dmytro on 4/26/2016.
  */
+var istanbul = require('browserify-istanbul');
+var isparta = require('isparta');
+
 module.exports = function (config) {
     config.set({
+        basePath: '',
         frameworks: ['browserify', 'jasmine'],
 
         files: [
-            './dist/*.js',
+            './src/*.js',
             './tests/*.js'
         ],
 
         preprocessors: {
-            './tests/*.js': ['browserify'],
-            './dist/*.js': ['coverage']
+            './src/*.js': ['browserify'],
+            './tests/*.js': ['browserify']
         },
 
         browserify: {
             debug: true,
-            transform: [ ['babelify', {"presets": ["es2015"]}] ]
+            transform: [
+                ['babelify', {"presets": ["es2015"]}],
+                [istanbul({instrumenter: isparta})]
+            ]
         },
 
         colors: true,
@@ -26,8 +33,14 @@ module.exports = function (config) {
         reporters: ['mocha', 'progress', 'coverage'],
 
         coverageReporter: {
-          type : 'text-summary',
-          dir : 'coverage/'
+            instrumenters: {isparta: isparta},
+            instrumenter: {'**/*.js': 'isparta'},
+            reporters: [{
+                type: 'lcov',
+                dir: 'coverage/'
+            }, {
+                type: 'text-summary'
+            }]
         },
 
         browsers: ['PhantomJS'],

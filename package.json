@@ -25,6 +25,7 @@
     "browserify-istanbul": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^2.0.0-alpha",
+    "isparta": "^4.0.0",
     "istanbul": "^0.4.3",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
