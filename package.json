@@ -24,6 +24,7 @@
     "browserify": "^13.0.0",
     "browserify-istanbul": "^2.0.0",
     "gulp": "^3.9.1",
+    "gulp-replace": "^0.5.4",
     "gulp-sourcemaps": "^2.0.0-alpha",
     "isparta": "^4.0.0",
     "istanbul": "^0.4.3",
