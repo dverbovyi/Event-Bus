@@ -1,7 +1,7 @@
 /**
  * Created by Dmytro on 4/9/2016.
  */
-export class EventDriver {
+export default class EventDriver {
     constructor() {
         this.eventsMap = {};
     }
