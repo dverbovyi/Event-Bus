@@ -2,5 +2,5 @@
 [![Code Climate](https://codeclimate.com/github/dverbovyi/Event-Driver/badges/gpa.svg)](https://codeclimate.com/github/dverbovyi/Event-Driver)
 # Event-Bus
 
-Pub/Sub class for event-driven application architecture
+Pub/Sub class for event-driven application's architecture
 
